@@ -16,8 +16,8 @@ Auth::routes();
 Route::get('/home', [DeshboardController::class, 'index'])->name('deshboard');//Backend index page route
 //Category Group and preficx
 Route::prefix('/category')->name('category.')->group(function(){
-    Route::get('/add', [CategoryController::class, 'addcategory'])->name('add');//Backend add category
-    Route::get('/store', [CategoryController::class, 'storecategory'])->name('store');//Backend add category
+    Route::get('/add', [CategoryController::class, 'addCategory'])->name('add');//Backend add category
+    Route::POST('/store', [CategoryController::class, 'storeCategory'])->name('store');//Backend add category
 
 });
 
