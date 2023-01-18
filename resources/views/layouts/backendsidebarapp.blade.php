@@ -13,7 +13,7 @@
         <a href="javascript:;" class=" side-menu {{ request()->routeIS('category.*') ? 'side-menu side-menu--active side-menu--open' : '' }} ">
             <div class="side-menu__icon"> <i data-feather="codepen"></i> </div>
             <div class="side-menu__title">
-                Catagory
+                Catagfry
                 <div class="side-menu__sub-icon"> <i data-feather="chevron-down"></i> </div>
             </div>
         </a>
