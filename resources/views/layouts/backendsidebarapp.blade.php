@@ -21,13 +21,13 @@
             <li>
                 <a href="{{ route('category.add') }}" class="side-menu side-menu--active side-menu--open">
                     <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
-                    <div class="side-menu__title"> Categories </div>
+                    <div class="side-menu__title"> Add Category </div>
                 </a>
             </li>
             <li>
-                <a href="{{ route('category.store') }}" class="side-menu side-menu--active side-menu--open">
+                <a href="{{ route('category.all') }}" class="side-menu side-menu--active side-menu--open">
                     <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
-                    <div class="side-menu__title"> Category Managment </div>
+                    <div class="side-menu__title"> Categories Managment </div>
                 </a>
             </li>
         </ul>

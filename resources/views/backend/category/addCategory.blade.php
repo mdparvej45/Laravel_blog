@@ -12,7 +12,12 @@
                     {{ $message }}
                 @enderror
             </span>
-            <input class=" mt-3 form-control" placeholder="Category slug (optional)" type="text" name="slug">
+            <input class=" mt-3 form-control" value="{{ old('slug') }}" placeholder="Category slug (optional)" type="text" name="slug">
+            <span class="text-theme-6">
+                @error('slug')
+                    {{ $message }}
+                @enderror
+            </span>
             <button class="btn btn-primary btn-sm mt-3" type="submit">Add Category</button>
         </form>
     </div>
