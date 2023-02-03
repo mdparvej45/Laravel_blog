@@ -11,7 +11,9 @@
         <meta name="author" content="LEFT4CODE">
         <title>Dashboard - Rubick - Bootstrap HTML Admin Template</title>
         <!-- BEGIN: CSS Assets-->
-        <link rel="stylesheet" href=" {{asset('backend/dist/css/app.css')}} "/>
+        <!-- include libraries(jQuery, bootstrap) -->
+
+        <link rel="stylesheet" href="{{asset('backend/dist/css/app.css')}}"/>
         <!-- END: CSS Assets-->
     </head>
     <!-- END: Head -->
@@ -57,7 +59,7 @@
         <div class="d-flex">
             <!-- BEGIN: Side Menu -->
             <nav class="side-nav">
-                <a href="index.html" class="intro-x d-flex align-items-center ps-5 pt-4">
+                <a href="{{ route('deshboard') }}" class="intro-x d-flex align-items-center ps-5 pt-4">
                     <img alt="Rubick Tailwind HTML Admin Template" class="w-10" src="https://api.dicebear.com/5.x/micah/svg">
                     <span class="d-none d-xl-block text-white fs-lg ms-3"> Katen.<span class="fw-medium">Deshboard</span> </span>
                 </a>
@@ -285,12 +287,18 @@
                 <!-- END: Top Bar -->
                 <div>
                     @yield('backend_content')
-
                 </div>
             </div>
             <!-- END: Content -->
         </div>
-        <script src=" {{asset('backend/dist/js/app.js')}}"></script>
         <!-- END: JS Assets-->
+        <script src=" {{asset('backend/dist/js/app.js')}}"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        {{-- Add Jaquery plagin --}}
+        {{-- CK Editor --}}
+        @stack('ekeditor_js')
     </body>
 </html>
