@@ -19,7 +19,7 @@ class CategoryController extends Controller
     public function storeCategory(Request $request)
     {
         $request->validate([
-            'title' => 'required|string|min:20',
+            'title' => 'required|string',
             'slug' => 'unique:categories,slug'
         ]);
         $category = new Category();

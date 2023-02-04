@@ -5,13 +5,14 @@
     <h2 style="background-color: rgb(68, 68, 249); color:aliceblue;" class="intro-y fs-lg fw-medium mt-10 card-header">
         All Posts...
     </h2>
-    <div class="grid columns-12 gap-6 mt-5 card-body">
+    <div class="grid columns-12 gap-6 card-body">
         <!-- BEGIN: Data List -->
         <div class="intro-y g-col-12 overflow-auto overflow-lg-visible">
             <table class="table table-report mt-n2">
                 <thead>
                     <tr>
-                        <th class="text-nowrap">ID</th>
+                        <th class="text-nowrap">#</th>
+                        <th class="text-nowrap">IMAGE</th>
                         <th class="text-nowrap">TITLE</th>
                         <th class="text-center text-nowrap">DETILES</th>
                         <th class="text-center text-nowrap">STATUS</th>
@@ -19,18 +20,29 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($all_post as $key=>$post)
+                    @forelse ($posts as $key=>$post)
                     <tr class="intro-x">
-                        <th class="w-10">
+                        <td class="w-10">
                             <h1>{{ ++$key }} </h1>
-                        </th>
+                        </td>
+                        <td class="w-10">
+                            <img src="{{ asset('storage/' . $post->images) }}" style="width: 80px; height:50px; border-radius:5px; border:1px solid rgb(159, 159, 159)">
+                        </td>
                         <td>
                             <a href="side-menu-light-crud-data-list.html" class="fw-medium text-nowrap">{{ $post->title }}</a> 
                             <div class="text-gray-600 fs-xs text-nowrap mt-0.5">{{ $post->slug }}</div>
                         </td>
                         <td class="text-center">
-                            <h2>{{ $post->detiles }}</h2>
+                            <h2>
+                                @if ($post->detiles > 15)
+                                {{ substr($post->detiles,0, 15) . '...' }}
+                                @endif
+                            </h2>
                         </td>
+
+
+
+                        
                         <td class="w-40">
                             <div class="d-flex align-items-center justify-content-center text-theme-9"> <i data-feather="check-square" class="w-4 h-4 me-2"></i> Active </div>
                         </td>
@@ -52,39 +64,11 @@
                     @endforelse
                 </tbody>
             </table>
+            <div class="row col-lg-12">
+                {{ $pagination->links() }}
+            </div>
         </div>
         <!-- END: Data List -->
-        <!-- BEGIN: Pagination -->
-        <div class="intro-y g-col-12 d-flex flex-wrap flex-sm-row flex-sm-nowrap align-items-center">
-            <nav class="w-full w-sm-auto me-sm-auto">
-                <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="side-menu-light-crud-data-list.html#"> <i class="w-4 h-4" data-feather="chevrons-left"></i> </a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="side-menu-light-crud-data-list.html#"> <i class="w-4 h-4" data-feather="chevron-left"></i> </a>
-                    </li>
-                    <li class="page-item"> <a class="page-link" href="side-menu-light-crud-data-list.html#">...</a> </li>
-                    <li class="page-item"> <a class="page-link" href="side-menu-light-crud-data-list.html#">1</a> </li>
-                    <li class="page-item active"> <a class="page-link" href="side-menu-light-crud-data-list.html#">2</a> </li>
-                    <li class="page-item"> <a class="page-link" href="side-menu-light-crud-data-list.html#">3</a> </li>
-                    <li class="page-item"> <a class="page-link" href="side-menu-light-crud-data-list.html#">...</a> </li>
-                    <li class="page-item">
-                        <a class="page-link" href="side-menu-light-crud-data-list.html#"> <i class="w-4 h-4" data-feather="chevron-right"></i> </a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="side-menu-light-crud-data-list.html#"> <i class="w-4 h-4" data-feather="chevrons-right"></i> </a>
-                    </li>
-                </ul>
-            </nav>
-            <select class="w-20 form-select box mt-3 mt-sm-0">
-                <option>10</option>
-                <option>25</option>
-                <option>35</option>
-                <option>50</option>
-            </select>
-        </div>
-        <!-- END: Pagination -->
     </div>
 </div>
 @endsection

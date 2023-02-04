@@ -32,7 +32,7 @@
         
          {{-- Add Category Section Starting Here --}}
         <div class="col-lg-6 mx-auto">
-            <div class="card-header" style="color: rgb(255, 255, 255);">Add Sub-Category</div>
+            <div class="card-header" style="color: rgb(255, 255, 255);">Select Sub-Category</div>
                 <div>
                 @csrf
                 <input class=" mt-2 form-control" name="title" value="{{ old('title') }}" placeholder="Sub Category title..." type="text" name="title">

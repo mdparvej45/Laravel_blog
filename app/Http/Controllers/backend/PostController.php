@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\SubCategory;
+use Spatie\Tags\Tag;
 
 class PostController extends Controller
 {
@@ -31,6 +32,7 @@ class PostController extends Controller
         ]);
  
 
+
         $post = new Post();
         $post->user_id = auth()->user()->id;
         $post->category_id = $request->category_id;
@@ -47,6 +49,11 @@ class PostController extends Controller
             $post->images = $upload_post_img;
         }
         $post->save();
+        $tags = str($request->hash_tag)->explode(',');
+        foreach($tags as $tag){
+            $tag = Tag::findOrCreate(['name' => trim($tag)]);
+            $post->attachTag($tag);
+        }
         return redirect()->back();
 
     }
@@ -54,8 +61,11 @@ class PostController extends Controller
     //All Post show method
     public function allPost()
     {
-        $all_post = Post::get();
-        return view('backend.post.allPost', compact('all_post'));
+        $user = auth()->user()->id;
+        $posts = Post::where('user_id', $user)->get();
+        $pagination = Post::paginate(5);
+        // dd($posts);
+        return view('backend.post.allPost', compact('posts', 'pagination'));
     }
 
     //Delete post method

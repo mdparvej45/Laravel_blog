@@ -2,7 +2,6 @@
 @section('content')
 				<!-- hero section -->
 				<section id="hero">
-		
 					<div class="container-xl">
 			
 						<div class="row gy-4">

@@ -56,7 +56,6 @@
 		<div class="site-wrapper">
 		
 			<div class="main-overlay"></div>
-		
 			<!-- header -->
 			<header class="header-default">
 				<nav class="navbar navbar-expand-lg">
@@ -67,36 +66,22 @@
 						<div class="collapse navbar-collapse">
 							<!-- menus -->
 							<ul class="navbar-nav mr-auto">
-								<li class="nav-item dropdown active">
-									<a class="nav-link dropdown-toggle" href="index.html">Home</a>
-									<ul class="dropdown-menu">
-										<li><a class="dropdown-item" href="index.html">Magazine</a></li>
-										<li><a class="dropdown-item" href="personal.html">Personal</a></li>
-										<li><a class="dropdown-item" href="personal-alt.html">Personal Alt</a></li>
-										<li><a class="dropdown-item" href="minimal.html">Minimal</a></li>
-										<li><a class="dropdown-item" href="classic.html">Classic</a></li>
-									</ul>
+								<li class="nav-item  active">
+									<a class="nav-link " href="index.html">Home</a>
 								</li>
-								<li class="nav-item">
-									<a class="nav-link" href="category.html">Lifestyle</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" href="category.html">Inspiration</a>
-								</li>
+								@foreach ($categories as $category)
 								<li class="nav-item dropdown">
-									<a class="nav-link dropdown-toggle" href="index.html#">Pages</a>
-									<ul class="dropdown-menu">
-										<li><a class="dropdown-item" href="category.html">Category</a></li>
-										<li><a class="dropdown-item" href="blog-single.html">Blog Single</a></li>
-										<li><a class="dropdown-item" href="blog-single-alt.html">Blog Single Alt</a></li>
-										<li><a class="dropdown-item" href="about.html">About</a></li>
-										<li><a class="dropdown-item" href="contact.html">Contact</a></li>
-									</ul>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" href="contact.html">Contact</a>
-								</li>
 
+									<a class="nav-link dropdown-toggle" href="index.html#">{{ $category->title }}</a>
+									@if (count($category->subcategories) > 0)
+										@foreach ($category->subcategories as $category->subcategory)	
+										<ul class="dropdown-menu">
+											<li><a class="dropdown-item" href="category.html">{{ $category->subcategory->category_id }}</a></li>
+										</ul>
+										@endforeach
+									@endif
+								</li>
+								@endforeach
 								@auth
 								<li class="nav-item dropdown">
 									<a class="nav-link dropdown-toggle" href="#">Profile</a>
