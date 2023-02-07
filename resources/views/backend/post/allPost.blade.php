@@ -35,7 +35,7 @@
                         <td class="text-center">
                             <h2>
                                 @if ($post->detiles > 15)
-                                {{ substr($post->detiles,0, 15) . '...' }}
+                                {{ substr($post->detiles ,0, 15 ) . '...' }}
                                 @endif
                             </h2>
                         </td>

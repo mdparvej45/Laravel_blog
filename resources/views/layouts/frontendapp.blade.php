@@ -67,18 +67,18 @@
 							<!-- menus -->
 							<ul class="navbar-nav mr-auto">
 								<li class="nav-item  active">
-									<a class="nav-link " href="index.html">Home</a>
+									<a class="nav-link " href="{{ route('frontend.index') }}">Home</a>
 								</li>
 								@foreach ($categories as $category)
-								<li class="nav-item dropdown">
+								<li class="nav-item {{ count($category->subcategories) > 0 ? 'dropdown' : '' }}">
 
-									<a class="nav-link dropdown-toggle" href="index.html#">{{ $category->title }}</a>
+									<a class="nav-link {{ count($category->subcategories) > 0 ? 'dropdown-toggle' : '' }} " href="{{ route('frontend.category', $category) }}">{{ $category->title }}</a>
 									@if (count($category->subcategories) > 0)
-										@foreach ($category->subcategories as $category->subcategory)	
-										<ul class="dropdown-menu">
-											<li><a class="dropdown-item" href="category.html">{{ $category->subcategory->category_id }}</a></li>
+									<ul class="dropdown-menu">
+											@foreach ($category->subcategories as $subcategory)	
+											<li><a class="dropdown-item" href="{{ route('frontend.subcategory', $subcategory) }}">{{ $subcategory->title }}</a></li>
+											@endforeach
 										</ul>
-										@endforeach
 									@endif
 								</li>
 								@endforeach
@@ -219,7 +219,7 @@
 				</div>
 				<!-- form -->
 				<form class="d-flex search-form">
-					<input class="form-control me-2" type="search" placeholder="Search and press enter ..." aria-label="Search">
+					<input class="form-control me-2" name="search_text" id="searchInput" type="search" placeholder="Search and press enter ..." aria-label="Search">
 					<button class="btn btn-default btn-lg" type="submit"><i class="icon-magnifier"></i></button>
 				</form>
 			</div>
@@ -282,6 +282,19 @@
 <script src=" {{ asset('frontend/js/slick.min.js')}} "></script>
 <script src=" {{ asset('frontend/js/jquery.sticky-sidebar.min.js')}} "></script>
 <script src=" {{ asset('frontend/js/custom.js')}} "></script>
+<script>
+	$('#searchInput').on('keyup', function(){
+		let value = $(this).val()
+		$.ajax({
+			methos: "GET",
+			url: "{{ route('frontend.search.live') }}",
+			data: {searchText: value},
+			success: function(data){
+				console.log(data)
+			}
+		});
+	})
+</script>
 
 </body>
 </html>

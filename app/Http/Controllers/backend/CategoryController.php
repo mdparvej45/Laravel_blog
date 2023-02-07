@@ -17,16 +17,20 @@ class CategoryController extends Controller
 
     //Store category in database Method
     public function storeCategory(Request $request)
-    {
+    {   $category_array = Category::all();
         $request->validate([
-            'title' => 'required|string',
+            'title' => 'required|string|max:12',
             'slug' => 'unique:categories,slug'
         ]);
         $category = new Category();
         $category->title = $request->title;
         $category->slug = $this->slugGenator($request->title, $request->slug);
-        $category->save();
-        return redirect()->back()->with('message', 'Category is successfully added!');
+        if(count($category_array) < 4){
+            $category->save();
+            return redirect()->back()->with('messagewarning', 'Category is successfully added!');
+        }else{
+            return redirect()->back()->with('message', 'Opps ! You have already 4 item of categories.');
+        }
     }
 
 

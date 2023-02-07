@@ -8,6 +8,36 @@
     </div>
 </div> 
 @endif --}}
+
+{{-- Adding towst for update and warning --}}
+@if({{ Session::has('massagewarning') }})
+<div class="show toast " role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <img src="..." class="rounded me-2" alt="...">
+      <strong class="me-auto">Bootstrap</strong>
+      <small class="text-muted">11 mins ago</small>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body" style="background-color: red; color:aliceblue;">
+      {{ Session::get('messagewarning') }}
+    </div>
+</div>
+@else
+<div class="show toast " role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <img src="..." class="rounded me-2" alt="...">
+      <strong class="me-auto">Bootstrap</strong>
+      <small class="text-muted">11 mins ago</small>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body" style="background-color: rgb(0, 142, 36); color:aliceblue;">
+      {{ Session::get('message') }}
+    </div>
+</div>
+@endif
+
+{{-- Adding towst for update and warning --}}
+
 <div class="col-lg-12">
     {{-- Add Category Section Starting Here --}}
     <div class="col-lg-12 mx-auto" style="background-color: rgb(56, 102, 253)">

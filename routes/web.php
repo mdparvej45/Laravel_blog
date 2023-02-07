@@ -4,13 +4,11 @@ use App\Http\Controllers\backend\CategoryController;
 use App\Http\Controllers\backend\DeshboardController;
 use App\Http\Controllers\backend\PostController;
 use App\Http\Controllers\backend\SubCategoryController;
-use App\Http\Controllers\frontend\FrontendController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use PHPUnit\TextUI\XmlConfiguration\Group;
 
-/* Frontend all Controller*/
-Route::GET('/', [FrontendController::class, 'index'])->name('frontend.index');//Frontend index page route 
+ 
 
 
 /* Backend all Controller*/
