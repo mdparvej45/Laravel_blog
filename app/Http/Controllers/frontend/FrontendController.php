@@ -24,13 +24,15 @@ class FrontendController extends Controller
     public function showSubcategroyPost($slug)
     {
         $subcategory = SubCategory::where('slug', $slug)->first();
+        return $subcategory;
     }
     public function showPost($slug){
         $post = Post::with(['category', 'subcategory', 'tags'])->where('slug', $slug)->first();
         // dd($post);
         return view('frontend.posts.show_singlepost', compact('post'));
     }
-    public function searchLive(){
-        return 'Hello';
+    public function searchLive(Request $request){
+        $post = Post::where('title','LIkE', '%' . $request->searchText . '%')->get();
+        return json_encode($post);
     }
 }

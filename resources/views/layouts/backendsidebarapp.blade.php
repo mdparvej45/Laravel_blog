@@ -8,6 +8,24 @@
             </div>
         </a>
     </li>
+    {{-- Banner is starting --}}
+        <li>
+            <a href="javascript:;" class=" side-menu {{ request()->routeIS('banner.*') ? 'side-menu--active side-menu--open' : '' }}">
+                <div class="side-menu__icon"> <i data-feather="credit-card"></i> </div>
+                <div class="side-menu__title">
+                    Banner Section
+                    <div class="side-menu__sub-icon"> <i data-feather="chevron-down"></i> </div>
+                </div>
+            </a>
+            <ul class="{{ request()->routeIS('banner.*') ? 'side-menu__sub-open' : '' }}">
+                <li>
+                    <a href="{{ route('banner.add') }}" class="side-menu side-menu--active side-menu--open">
+                        <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                        <div class="side-menu__title">Banner Managment</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
     {{-- Category li is starting --}}
     <li>
         <a href="javascript:;" class=" side-menu {{ request()->routeIS('category.*') ? 'side-menu--active side-menu--open' : '' }} ">

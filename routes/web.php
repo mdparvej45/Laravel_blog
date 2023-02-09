@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\backend\BannerController;
 use App\Http\Controllers\backend\CategoryController;
 use App\Http\Controllers\backend\DeshboardController;
 use App\Http\Controllers\backend\PostController;
@@ -14,6 +15,13 @@ use PHPUnit\TextUI\XmlConfiguration\Group;
 /* Backend all Controller*/
 Auth::routes();
 Route::get('/home', [DeshboardController::class, 'index'])->name('deshboard');//Backend index page route
+
+
+//Banner group and prefix
+Route::prefix('/banner')->name('banner.')->group(function(){
+    Route::get('/add', [BannerController::class, 'addBanner'])->name('add');//Backend add banner
+    Route::post('/store', [BannerController::class, 'storeBanner'])->name('store');//Backend store banner
+});
 
 
 //Category Group and preficx

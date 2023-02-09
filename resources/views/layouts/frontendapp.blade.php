@@ -222,6 +222,9 @@
 					<input class="form-control me-2" name="search_text" id="searchInput" type="search" placeholder="Search and press enter ..." aria-label="Search">
 					<button class="btn btn-default btn-lg" type="submit"><i class="icon-magnifier"></i></button>
 				</form>
+				<ul style="list-style: none; text-decoration-none;" id="searchItme">
+					
+				</ul>
 			</div>
 		</div>
 		
@@ -284,17 +287,61 @@
 <script src=" {{ asset('frontend/js/custom.js')}} "></script>
 <script>
 	$('#searchInput').on('keyup', function(){
-		let value = $(this).val()
+	let value = $(this).val()
+	if(value.length > 2){
 		$.ajax({
-			methos: "GET",
+			methos: "get",
 			url: "{{ route('frontend.search.live') }}",
 			data: {searchText: value},
 			success: function(data){
-				console.log(data)
+				let results = JSON.parse(data);
+				let posts = []
+				results.forEach(result => {
+					// console.table(result['slug'])
+					let url = `{{route('frontend.showpost', ':slug')}}`;
+					url = url.replace(':slug', result.slug)
+					console.log(url);
+					let searchResult = `
+					<li style="margin-top:20px; align-items:center; border-bottom:1px solid gray;" class="py-1">
+							<a href="${url}">
+								<div class="row align-items-center col-lg-12">
+									<div class="col-lg-3">
+										<img style="width: 90%; height:80%;" src="{{ asset('storage/') . '/'}}${result.images}" alt="">
+									</div>
+									<div class="card-body col-lg-9">
+										<h5>${result.title}</h5>
+										
+									</div>
+								</div>
+							</a>
+						</li>`;
+						posts.push(searchResult)
+				});
+				$('#searchItme').html(posts)
 			}
 		});
+	}else{
+		$('#searchItme').html('');
+	}
 	})
 </script>
+{{-- <script>
+	$(document).ready(function(){
+		$('#searchInput').keyup(function(){
+			var search = $('#searchInput').val();
+			// console.log(search);
+			if(search == ""){
+				$("#memList").html("");
+				$("result").hide();
+			}else{
+				$.get("{{ URL::to('search') }}", {search:search}, function(){
+					$('#memList').empty().html(data);
+					$('#result').show();
+				})	
+			}
+		});
+	});
+</script> --}}
 
 </body>
 </html>
