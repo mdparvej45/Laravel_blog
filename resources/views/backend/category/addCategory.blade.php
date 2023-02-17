@@ -10,7 +10,7 @@
 @endif --}}
 
 {{-- Adding towst for update and warning --}}
-@if({{ Session::has('massagewarning') }})
+@if( Session::has('massagewarning'))
 <div class="show toast " role="alert" aria-live="assertive" aria-atomic="true">
     <div class="toast-header">
       <img src="..." class="rounded me-2" alt="...">

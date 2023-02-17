@@ -3,14 +3,19 @@
 namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
-{
-    public function index(){
+{  
+   
+    
+    //Category and Subcategory all methods
+    public function category()
+    {
 
         return view('frontend.frontend_index');
     }
@@ -26,13 +31,16 @@ class FrontendController extends Controller
         $subcategory = SubCategory::where('slug', $slug)->first();
         return $subcategory;
     }
-    public function showPost($slug){
+    public function showPost($slug)
+    {
         $post = Post::with(['category', 'subcategory', 'tags'])->where('slug', $slug)->first();
         // dd($post);
         return view('frontend.posts.show_singlepost', compact('post'));
     }
-    public function searchLive(Request $request){
+    public function searchLive(Request $request)
+    {
         $post = Post::where('title','LIkE', '%' . $request->searchText . '%')->get();
         return json_encode($post);
     }
+
 }

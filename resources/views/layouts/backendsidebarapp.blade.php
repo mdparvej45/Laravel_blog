@@ -8,6 +8,30 @@
             </div>
         </a>
     </li>
+    {{-- Role and permission is starting --}}
+    <li>
+        <a href="javascript:;" class=" side-menu {{ request()->routeIS('role.*') ? 'side-menu--active side-menu--open' : '' }}">
+            <div class="side-menu__icon"> <i data-feather="slack"></i> </div>
+            <div class="side-menu__title">
+                Roles & Permissions
+                <div class="side-menu__sub-icon"> <i data-feather="chevron-down"></i> </div>
+            </div>
+        </a>
+        <ul class="{{ request()->routeIS('role.*') ? 'side-menu__sub-open' : '' }}">
+            <li>
+                <a href="{{ route('role.add') }}" class="side-menu side-menu--active side-menu--open">
+                    <div class="side-menu__icon"> <i data-feather="user-check"></i> </div>
+                    <div class="side-menu__title">Roles</div>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('permission.add') }}" class="side-menu side-menu--active side-menu--open">
+                    <div class="side-menu__icon"> <i data-feather="key"></i> </div>
+                    <div class="side-menu__title">Permissions</div>
+                </a>
+            </li>
+        </ul>
+    </li>
     {{-- Banner is starting --}}
         <li>
             <a href="javascript:;" class=" side-menu {{ request()->routeIS('banner.*') ? 'side-menu--active side-menu--open' : '' }}">
@@ -20,7 +44,7 @@
             <ul class="{{ request()->routeIS('banner.*') ? 'side-menu__sub-open' : '' }}">
                 <li>
                     <a href="{{ route('banner.add') }}" class="side-menu side-menu--active side-menu--open">
-                        <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                        <div class="side-menu__icon"> <i data-feather="credit-card"></i> </div>
                         <div class="side-menu__title">Banner Managment</div>
                     </a>
                 </li>
@@ -38,13 +62,13 @@
         <ul class="{{ request()->routeIS('category.*') ? 'side-menu__sub-open' : '' }}">
             <li>
                 <a href="{{ route('category.add') }}" class="side-menu side-menu--active side-menu--open">
-                    <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                    <div class="side-menu__icon"> <i data-feather="edit-2"></i> </div>
                     <div class="side-menu__title"> Categories</div>
                 </a>
             </li>
             <li>
                 <a href="{{ route('category.subcategory.add') }}" class="side-menu side-menu--active side-menu--open">
-                    <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                    <div class="side-menu__icon"> <i data-feather="edit-3"></i> </div>
                     <div class="side-menu__title"> Sub-Categories</div>
                 </a>
             </li>
@@ -62,13 +86,13 @@
         <ul class="{{ request()->routeIS('post.*') ? 'side-menu__sub-open' : '' }}">
             <li>
                 <a href="{{ route('post.add') }}" class="side-menu side-menu--active side-menu--open">
-                    <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                    <div class="side-menu__icon"> <i data-feather="file-plus"></i> </div>
                     <div class="side-menu__title">Add Post</div>
                 </a>
             </li>
             <li>
                 <a href="{{ route('post.all') }}" class="side-menu side-menu--active side-menu--open">
-                    <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                    <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
                     <div class="side-menu__title"> Posts Managment</div>
                 </a>
             </li>

@@ -77,8 +77,11 @@
                                 @enderror
                             </span>
                         </div>
-                        <div class="image" style="width: 50%; height:290px">
-                            <input type="file" name="image" >
+                        <div class="col-lg-6">
+                            <label for="imagefile">
+                                <input type="file" id="imagefile" style="visibility: hidden;" name="image" class="postImg">
+                                <img class="liveImage" src="{{ asset('backend/dist/images/imageplaceholder.png') }}" alt="" style="height: 265px; width:430px;">
+                            </label>
                             <p class="text-theme-6">
                                 @error('image')
                                     {{ $message }}
@@ -99,8 +102,27 @@
     ClassicEditor
         .create( document.querySelector( '.editor' ) )
         .catch( error => {
-            console.error( error );
         } );
 </script>
 <script src="{{ asset('backend/dist/js/photoinstentchange.js') }}"></script>
+
+
+
+
+<script>
+
+    let inputImg = document.querySelector('.postImg')
+    let image = document.querySelector('.liveImage')
+
+    let changeImage = (e) => {
+        
+    let url  = URL.createObjectURL(e.target.files[0])
+    image.src = url
+}
+
+
+    inputImg.addEventListener('change', changeImage)
+
+</script>
+
 @endpush

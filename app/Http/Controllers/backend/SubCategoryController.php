@@ -38,10 +38,13 @@ class SubCategoryController extends Controller
     }
 
     //Edit subcategory method
-    public function editSubCategory(SubCategory $slug){
-        $data = SubCategory::where($slug, 'slug')->get();
+    public function editSubCategory( $slug){
+        $data = SubCategory::where('slug', $slug)->first();
+        $categores = Category::get();
 
-        return view('backend.category.editSubCategory', compact('data'));
+        // dd($data);
+
+        return view('backend.category.editSubCategory', compact('data', 'categores'));
     }
 
     //Delete sibcategory method

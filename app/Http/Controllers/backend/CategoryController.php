@@ -59,12 +59,12 @@ class CategoryController extends Controller
     //Category Update method 
     public function updateCategory(Request $request, Category $slug){
         $request->validate([
-            'title' => 'required|string|min:20|',
+            'title' => 'required|string|max:12',
         ]);
         $slug->title = $request->title;
         $slug->slug = $this->slugGenator($request->title, $request->slug);
         $slug->save();
-        return redirect()->route('category.edit',$slug->slug);
+        return redirect()->route('category.add',$slug->slug);
     }
 
     //Delete category method 

@@ -14,8 +14,8 @@
                          <label for="category" class="form-control">
                             Main Category:
                             <select class="form-control" name="category_id" id="category">
-                            @foreach ($data as $item)
-                            <option selected value="#"></option>
+                            @foreach ($categores as $item)
+                            <option @selected($item->id == $data->category_id) value="{{ $item->id }}">{{ $item->title }}</option>
                             @endforeach
                             </select>
                         </label>

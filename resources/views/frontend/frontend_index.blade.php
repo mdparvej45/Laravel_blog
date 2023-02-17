@@ -1,18 +1,20 @@
 @extends('layouts.frontendapp')
 @section('content')
+	@php
+		$banner = App\Models\Banner::latest()->first();
+	@endphp
 				<!-- hero section -->
 				<section id="hero">
 					<div class="container-xl">
-			
 						<div class="row gy-4">
 			
 							<div class="col-lg-8">
-								
+								{{-- {{ dd($banner) }} --}}
 								<!-- featured post large -->
 								<div class="post featured-post-lg">
 									<div class="details clearfix">
-										<a href="category.html" class="category-badge">Inspiration</a>
-										<h2 class="post-title"><a href="blog-single.html">5 Easy Ways You Can Turn Future Into Success</a></h2>
+										<h2 class="post-title"><a href="blog-single.html">
+										</a></h2>
 										<ul class="meta list-inline mb-0">
 											<li class="list-inline-item"><a href="index.html#">Katen Doe</a></li>
 											<li class="list-inline-item">29 March 2021</li>
@@ -23,8 +25,7 @@
 											<div class="inner data-bg-image" data-bg-image=" {{asset('frontend/images/posts/featured-lg.jpg')}} "></div>
 										</div>
 									</a>
-								</div>
-			
+								</div>			
 							</div>
 			
 							<div class="col-lg-4">

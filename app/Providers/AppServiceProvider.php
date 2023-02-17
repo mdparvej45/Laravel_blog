@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         view()->composer('layouts.frontendapp',function($view){
-            $view->with('categories',Category::with('subcategories')->get());
+            $view->with('categories',Category::with('subcategories')->take(3)->get());
         });
 
 

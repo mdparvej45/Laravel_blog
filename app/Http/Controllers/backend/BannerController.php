@@ -4,17 +4,18 @@ namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Banner;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class BannerController extends Controller
 {
     //add banner method
     public function addBanner(){
-        return view('backend.banner.bannerMangment');
+        $banner_posts = Banner::take(4)->latest()->get();
+        return view('backend.banner.bannerMangment', compact('banner_posts'));
     }
     public function storeBanner(Request $request){
-
-
+        $user = User::auth()->user()->id;
         $request->validate([
             'title' => 'required|min:20',
         ]);
@@ -26,7 +27,7 @@ class BannerController extends Controller
         $uploadImage = $request->banner_image->storeAs('banner', $uniqueBannerImageName, 'public');
         $banner->banner_image = $uploadImage;
         $banner->save();
-        return back();
+        return redirect()->route('banner.add');
 
     }
     private function slugGenarator($title, $slug = null){

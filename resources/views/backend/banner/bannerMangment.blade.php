@@ -80,28 +80,28 @@
                     <div class="">
                         <!-- BEGIN: Data List -->
                         <div class="intro-y overflow-hidden overflow-lg-hidden">
-                            <table class="table table-report mt-n2">
+                            <table class="table table-report">
                                 <thead>
                                     <tr>
                                         <th class="text-nowrap">ID</th>
+                                        <th class="text-nowrap">IMAGE</th>
                                         <th class="text-nowrap">TITLE</th>
-                                        <th class="text-center text-nowrap">SLUG/LINK</th>
                                         <th class="text-nowrap">STATUS</th>
                                         <th class="text-center text-nowrap">ACTIONS</th>
                                     </tr>
                                 </thead>
-                                {{-- {{ dd($subcategories) }} --}}
                                 <tbody>
+                                    @forelse ($banner_posts as $key=>$banner)
                                     <tr class="intro-x">
                                         <td class="w-10">
-                                            <h1></h1>
+                                            <h1>{{ ++$key }}</h1>
+                                        </td>
+                                        <td class="w-10">
+                                           <img style="width: 80px; height:50px; " src="{{ asset('storage/') . '/' . $banner->banner_image }}" alt="{{ $banner->slug }}">
                                         </td>
                                         <td>
-                                            <a href="side-menu-light-crud-data-list.html" class="fw-medium text-nowrap"></a> 
-                                            <div class="text-gray-600 fs-xs text-nowrap mt-0.5"></div>
-                                        </td>
-                                        <td class="text-center">
-                                            <h2></h2>
+                                            <a href="side-menu-light-crud-data-list.html" class="fw-medium text-nowrap">{{ $banner->title }}</a> 
+                                            <div class="text-gray-600 fs-xs text-nowrap mt-0.5">{{ $banner->slug }}</div>
                                         </td>
                                         <td class="w-40">
                                             <div class="d-flex align-items-center justify-content-center text-theme-9"> <i data-feather="check-square" class="w-4 h-4 me-2"></i> Active </div>
@@ -117,6 +117,11 @@
                                             </div>
                                         </td>
                                     </tr>
+                                    @empty
+                                       <tr>
+                                        <h4>No Record Found...</h4>
+                                        </tr> 
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>
