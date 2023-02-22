@@ -104,10 +104,6 @@
         .catch( error => {
         } );
 </script>
-<script src="{{ asset('backend/dist/js/photoinstentchange.js') }}"></script>
-
-
-
 
 <script>
 

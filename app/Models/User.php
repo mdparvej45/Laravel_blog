@@ -50,4 +50,5 @@ class User extends Authenticatable
     public function banner(){
         return $this->hasMany(Banner::class);
     }
+
 }

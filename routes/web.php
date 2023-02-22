@@ -7,6 +7,7 @@ use App\Http\Controllers\backend\PermissionController;
 use App\Http\Controllers\backend\PostController;
 use App\Http\Controllers\backend\RoleController;
 use App\Http\Controllers\backend\SubCategoryController;
+use App\Http\Controllers\backend\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use PHPUnit\TextUI\XmlConfiguration\Group;
@@ -30,6 +31,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::prefix('/permission')->name('permission.')->group(function(){
         Route::get('/add', [PermissionController::class, 'addPermission'])->name('add');//Add new permission route
         Route::get('/assign/{id:id}', [PermissionController::class, 'assignPermission'])->name('assign');//Assign permission route
+        Route::post('/added/{id:id}', [PermissionController::class, 'addedPermission'])->name('added');//added parmission backend
     });
     
     
@@ -38,7 +40,6 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/add', [BannerController::class, 'addBanner'])->name('add');//Backend add banner
         Route::post('/store', [BannerController::class, 'storeBanner'])->name('store');//Backend store banner
     });
-    
     
     //Category Group and preficx
     Route::prefix('/category')->name('category.')->group(function(){
@@ -63,6 +64,13 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('/store', [PostController::class, 'storePost'])->name(('store'));//Backend store post Route
         Route::get('/all', [PostController::class, 'allPost'])->name('all');//Backend all post Route
         Route::delete('/delete/{slug:slug}', [PostController::class, 'deletePost'])->name('delete');//Backend post delete Route
+    });
+
+    //User group and prefix
+    Route::prefix('users')->name('users.')->group(function(){
+        Route::get('/add', [UserController::class, 'addUsers'])->name('add');//Backend add user Route
+        Route::post('/store', [UserController::class, 'storeUsers'])->name('store');//Backend store user route
+        Route::get('/all',[ UserController::class, 'allEmployee'])->name('all');//Backend all user rooute
     });
 
 });

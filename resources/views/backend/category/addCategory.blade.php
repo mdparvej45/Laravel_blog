@@ -39,28 +39,31 @@
 {{-- Adding towst for update and warning --}}
 
 <div class="col-lg-12">
-    {{-- Add Category Section Starting Here --}}
-    <div class="col-lg-12 mx-auto" style="background-color: rgb(56, 102, 253)">
-        <div class="card-header" style="color: white">Add Category</div>
-        <div class=" card-body">
-            <form action="{{ route('category.store') }}" method="POST">
-                @csrf
-                <input class=" form-control" value="{{ old('title') }}" placeholder="Category title..." type="text" name="title">
-                <span class="text-theme-6">
-                    @error('title')
-                        {{ $message }}
-                    @enderror
-                </span>
-                <input class=" mt-1 form-control" style="display:none;" value="{{ old('slug') }}" placeholder="Category slug (optional)" type="text" name="slug">
-                <span class="text-theme-6">
-                    @error('slug')
-                        {{ $message }}
-                    @enderror
-                </span>
-                <button class="btn btn-primary btn-sm mt-3" style="width: 100%;background-color: rgb(255, 255, 255); color:blue;" name="add_category" type="submit">Add Category</button>
-            </form>
-        </div>
-    </div>{{-- Add Category Section Ending Here --}}
+    {{-- This section access to need category create permission --}}
+    @can('category create')
+        {{-- Add Category Section Starting Here --}}
+        <div class="col-lg-12 mx-auto" style="background-color: rgb(56, 102, 253)">
+            <div class="card-header" style="color: white">Add Category</div>
+            <div class=" card-body">
+                <form action="{{ route('category.store') }}" method="POST">
+                    @csrf
+                    <input class=" form-control" value="{{ old('title') }}" placeholder="Category title..." type="text" name="title">
+                    <span class="text-theme-6">
+                        @error('title')
+                            {{ $message }}
+                        @enderror
+                    </span>
+                    <input class=" mt-1 form-control" style="display:none;" value="{{ old('slug') }}" placeholder="Category slug (optional)" type="text" name="slug">
+                    <span class="text-theme-6">
+                        @error('slug')
+                            {{ $message }}
+                        @enderror
+                    </span>
+                    <button class="btn btn-primary btn-sm mt-3" style="width: 100%;background-color: rgb(255, 255, 255); color:blue;" name="add_category" type="submit">Add Category</button>
+                </form>
+            </div>
+        </div>{{-- Add Category Section Ending Here --}}  
+    @endcan
 
     <div class="card-header col-lg-12">
         <div class=" mx-auto">
@@ -99,8 +102,14 @@
                                         </td>
                                         <td class="table-report__action w-56">
                                             <div class=" btn-group d-flex justify-content-center align-items-center">
-                                                <a class="d-flex align-items-center me-3" href="{{ route('category.edit', $data) }}"> <i data-feather="check-square" class="w-4 h-4 me-1"></i> Edit </a>
+                                                {{-- This section access to need create edit permission --}}
+                                                @can('category edit')
+                                                    <a class="d-flex align-items-center me-3" href="{{ route('category.edit', $data) }}"> <i data-feather="check-square" class="w-4 h-4 me-1"></i> Edit </a>
+                                                @endcan
+                                                {{-- This section access to need create delete permission --}}
+                                                @can('category delete')
                                                 <a href="#" class="d-flex align-items-center text-theme-6 deletebutton" href="javascript:;" data-bs-toggle="modal" data-bs-target="#delete-confirmation-modal"> <i data-feather="trash-2" class="w-4 h-4 me-1"></i> Delete </a>
+                                                @endcan
                                                 <form action="{{ route('category.delete', $data) }}" method="post">
                                                     @csrf
                                                     @method('DELETE')

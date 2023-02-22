@@ -8,6 +8,9 @@
             </div>
         </a>
     </li>
+
+    {{-- This section access to need role status --}}
+    @can('role status')
     {{-- Role and permission is starting --}}
     <li>
         <a href="javascript:;" class=" side-menu {{ request()->routeIS('role.*') ? 'side-menu--active side-menu--open' : '' }}">
@@ -32,6 +35,7 @@
             </li>
         </ul>
     </li>
+    @endcan
     {{-- Banner is starting --}}
         <li>
             <a href="javascript:;" class=" side-menu {{ request()->routeIS('banner.*') ? 'side-menu--active side-menu--open' : '' }}">
@@ -60,12 +64,15 @@
             </div>
         </a>
         <ul class="{{ request()->routeIS('category.*') ? 'side-menu__sub-open' : '' }}">
+            {{-- This section access to need category create edit --}}
+            @can('category edit')
             <li>
                 <a href="{{ route('category.add') }}" class="side-menu side-menu--active side-menu--open">
                     <div class="side-menu__icon"> <i data-feather="edit-2"></i> </div>
                     <div class="side-menu__title"> Categories</div>
                 </a>
             </li>
+            @endcan
             <li>
                 <a href="{{ route('category.subcategory.add') }}" class="side-menu side-menu--active side-menu--open">
                     <div class="side-menu__icon"> <i data-feather="edit-3"></i> </div>
@@ -98,4 +105,47 @@
             </li>
         </ul>
     </li>
+    {{-- User Managment li is starting --}}
+    @can('user edit')
+    <li>
+        <a href="javascript:;" class=" side-menu {{ request()->routeIS('users.*') ? 'side-menu side-menu--active side-menu--open' : '' }} ">
+            <div class="side-menu__icon"> <i data-feather="users"></i> </div>
+            <div class="side-menu__title">
+                User Managment
+                <div class="side-menu__sub-icon"> <i data-feather="chevron-down"></i> </div>
+            </div>
+        </a>
+        <ul class="{{ request()->routeIS('users.*') ? 'side-menu__sub-open' : '' }}">
+            <li>
+                <a href="javascript:;" class=" side-menu {{ request()->routeIS('users.*') ? 'side-menu side-menu--active side-menu--open' : '' }} ">
+                    <div class="side-menu__icon"> <i data-feather="user-check"></i> </div>
+                    <div class="side-menu__title">
+                        Employees
+                        <div class="side-menu__sub-icon"> <i data-feather="chevron-down"></i> </div>
+                    </div>
+                </a>
+                <ul class="{{ request()->routeIS('users.*') ? 'side-menu__sub-open' : '' }}"> 
+                    <li>
+                        <a href="{{ route('users.add') }}" class="side-menu side-menu--active side-menu--open">
+                            <div class="side-menu__icon"> <i data-feather="user-plus"></i> </div>
+                            <div class="side-menu__title">Add Employee </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('users.all') }}" class="side-menu side-menu--active side-menu--open">
+                            <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
+                            <div class="side-menu__title">Employees </div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#" class="side-menu side-menu--active side-menu--open">
+                    <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
+                    <div class="side-menu__title">Others</div>
+                </a>
+            </li>
+        </ul>
+    </li> 
+    @endcan
 </ul>
