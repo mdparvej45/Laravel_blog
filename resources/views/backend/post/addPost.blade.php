@@ -5,6 +5,7 @@
         <div class="col-lg-12 mx-auto mt-3">
             <div class="card-header" style="background-color: rgb(34, 34, 242); color:aliceblue;">Add Post</div>
             <div class="card-body">
+                {{ dd(Auth::user()->permissions) }}
                 <form action="{{ route('post.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row">

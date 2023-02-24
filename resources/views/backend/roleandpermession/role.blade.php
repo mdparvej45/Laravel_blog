@@ -1,6 +1,7 @@
 @extends('layouts.backendapp')
 @section('backend_content')
-    <div class="row col-lg-12 mx-auto" style="border-bottom: 2px solid rgb(34, 38, 255);">
+<div class="row col-lg-12 mx-auto" style="border-bottom: 2px solid rgb(34, 38, 255);">
+    @can('role_create')
         <div class="card col-lg-6">
             <form action="{{ route('role.store') }}" method="post">
                 @csrf
@@ -13,6 +14,7 @@
                 </div>
             </form>
         </div>
+    @endcan
     </div>
     <div class="row col-lg-12 mx-auto">
         <div class="intro-y overflow-hidden overflow-lg-hidden">
@@ -41,19 +43,19 @@
                         </td>
                         <td class="w-40">
                             {{-- This section access to need role status permission --}}
-                            @can('role status')
+                            @can('role_status')
                             <div class="d-flex align-items-center justify-content-center text-theme-9"> <i data-feather="check-square" class="w-4 h-4 me-2"></i> Active </div> 
                             @endcan
                         </td>
                         <td class="table-report__action w-40">
                             <div class=" btn-group d-flex justify-content-center align-items-center">
                                 {{-- This section access to need role edit permission --}}
-                                @can('role edit')
+                                @can('role_edit')
                                 <a class="d-flex align-items-center me-3" href="{{ route('role.edit', $role) }}"> <i data-feather="check-square" class="w-4 h-4 me-1"></i> Edit </a>
                                 @endcan
+                                @can('role_delete')
                                 <a href="#" class="d-flex align-items-center text-theme-6 deletebutton" href="javascript:;" data-bs-toggle="modal" data-bs-target="#delete-confirmation-modal"> <i data-feather="trash-2" class="w-4 h-4 me-1"></i> Delete </a>
-                                <form action="#" method="post">
-                                </form>
+                                @endcan
                             </div>
                         </td>
                     </tr>

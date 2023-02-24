@@ -8,34 +8,32 @@
             </div>
         </a>
     </li>
-
-    {{-- This section access to need role status --}}
-    @can('role status')
-    {{-- Role and permission is starting --}}
-    <li>
-        <a href="javascript:;" class=" side-menu {{ request()->routeIS('role.*') ? 'side-menu--active side-menu--open' : '' }}">
-            <div class="side-menu__icon"> <i data-feather="slack"></i> </div>
-            <div class="side-menu__title">
-                Roles & Permissions
-                <div class="side-menu__sub-icon"> <i data-feather="chevron-down"></i> </div>
-            </div>
-        </a>
-        <ul class="{{ request()->routeIS('role.*') ? 'side-menu__sub-open' : '' }}">
-            <li>
-                <a href="{{ route('role.add') }}" class="side-menu side-menu--active side-menu--open">
-                    <div class="side-menu__icon"> <i data-feather="user-check"></i> </div>
-                    <div class="side-menu__title">Roles</div>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('permission.add') }}" class="side-menu side-menu--active side-menu--open">
-                    <div class="side-menu__icon"> <i data-feather="key"></i> </div>
-                    <div class="side-menu__title">Permissions</div>
-                </a>
-            </li>
-        </ul>
-    </li>
-    @endcan
+@canany(['role_create', 'role_edit', 'role_status', 'role_delete', 'permission_create', 'permission_edit', 'permission_status', 'permission_delete'])
+{{-- Role and permission is starting --}}
+<li>
+    <a href="javascript:;" class=" side-menu {{ request()->routeIS('role.*') ? 'side-menu--active side-menu--open' : '' }}">
+        <div class="side-menu__icon"> <i data-feather="slack"></i> </div>
+        <div class="side-menu__title">
+            Roles & Permissions
+            <div class="side-menu__sub-icon"> <i data-feather="chevron-down"></i> </div>
+        </div>
+    </a>
+    <ul class="{{ request()->routeIS('role.*') ? 'side-menu__sub-open' : '' }}">
+        <li>
+            <a href="{{ route('role.add') }}" class="side-menu side-menu--active side-menu--open">
+                <div class="side-menu__icon"> <i data-feather="user-check"></i> </div>
+                <div class="side-menu__title">Roles</div>
+            </a>
+        </li>
+        <li>
+            <a href="{{ route('permission.add') }}" class="side-menu side-menu--active side-menu--open">
+                <div class="side-menu__icon"> <i data-feather="key"></i> </div>
+                <div class="side-menu__title">Permissions</div>
+            </a>
+        </li>
+    </ul>
+</li>  
+@endcanany
     {{-- Banner is starting --}}
         <li>
             <a href="javascript:;" class=" side-menu {{ request()->routeIS('banner.*') ? 'side-menu--active side-menu--open' : '' }}">
@@ -105,8 +103,6 @@
             </li>
         </ul>
     </li>
-    {{-- User Managment li is starting --}}
-    @can('user edit')
     <li>
         <a href="javascript:;" class=" side-menu {{ request()->routeIS('users.*') ? 'side-menu side-menu--active side-menu--open' : '' }} ">
             <div class="side-menu__icon"> <i data-feather="users"></i> </div>
@@ -147,5 +143,4 @@
             </li>
         </ul>
     </li> 
-    @endcan
 </ul>
