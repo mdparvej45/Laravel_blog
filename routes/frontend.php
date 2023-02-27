@@ -1,6 +1,7 @@
 <?php
-use App\Http\Controllers\frontend\FrontendController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SocialLoginController;
+use App\Http\Controllers\frontend\FrontendController;
 
 
 
@@ -20,4 +21,21 @@ Route::prefix('/')->name('frontend.')->group(function(){
 //Banners Controller all here: 
 Route::prefix('/')->name('frontend.')->group(function(){
     Route::get('banner/', [FrontendController::class, 'banner'])->name('banner');
+});
+
+//Social account login 
+//Google login
+Route::prefix('/google')->name('google.')->group(function(){
+    Route::get('/login', [SocialLoginController::class, 'googleLogin'])->name('login');//Google login route
+    Route::get('/redirect', [SocialLoginController::class, 'googleRedirect'])->name('redirect');//Google cradantial redirect
+});
+//Facebook Login 
+Route::prefix('/facebook')->name('facebook.')->group(function(){
+    Route::get('/login', [SocialLoginController::class, 'facebookLogin'])->name('login');//Facebook login rotue
+    Route::get('/redirect', [SocialLoginController::class, 'facebookRedirect'])->name('redirect');//Facebook redirect route
+});
+//Github Login
+Route::prefix('/github')->name('github.')->group(function(){
+    Route::get('/login', [SocialLoginController::class, 'githubLogin'])->name('login');//Github login route
+    Route::get('/redirect', [SocialLoginController::class, 'githubRedirect'])->name('redirect');//Github Redirect route
 });

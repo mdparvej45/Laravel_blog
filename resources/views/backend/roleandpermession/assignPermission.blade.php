@@ -7,7 +7,12 @@
     <div class=" row col-lg-12">
         @foreach ($permissions as $permission)
         <div class="col-lg-3" style="margin: 15px 0px;">
-            <input type="checkbox" {{ $hasPermissions->search($permission->id) ? 'checked' : '' }} value="{{ $permission->id }}" name="permissions[]" id="{{ $permission->id }}">
+            <input type="checkbox"  
+            @foreach ($hasPermissions as $per)
+             {{ $per == $permission->id ? 'checked' : '' }}   
+            @endforeach
+            
+            value="{{ $permission->id }}" name="permissions[]" id="{{ $permission->id }}">
             <label for="{{ $permission->id }}">{{ Str::ucfirst($permission->name )}}</label>
         </div> 
         @endforeach

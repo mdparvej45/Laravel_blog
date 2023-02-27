@@ -22,7 +22,7 @@ Route::group(['middleware' => ['auth','isbanned']], function () {
     
 
     //Role Group and prefix
-    Route::prefix('/role')->name('role.')->middleware('can:role_create|role_edit|role_status|role_delete')->group(function(){
+    Route::prefix('/role')->name('role.')->middleware('permission:role_create|role_edit|role_status|role_delete')->group(function(){
         Route::get('/add', [RoleController::class, 'addRoles'])->name('add');//Backend add role controller
         Route::post('/store', [RoleController::class, 'storeRoles'])->name('store');//Backend add role controller
         Route::get('/edit/{id:id}', [RoleController::class, 'editRoles'])->name('edit');//Backend edit role controller
@@ -74,7 +74,6 @@ Route::group(['middleware' => ['auth','isbanned']], function () {
         Route::get('/all',[ UserController::class, 'allEmployee'])->name('all');//Backend all user rooute
         Route::get('/bann/{id:id}',[ UserController::class, 'bannEmployee'])->name('bann');//Backend bann user rooute
     });
-
 });
 
 

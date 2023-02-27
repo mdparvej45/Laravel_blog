@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
 use App\Models\User;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
@@ -63,8 +64,19 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             
         ]);
-        $user->syncRoles([5]);
-
+        $user->assignRole([5]);
+        if(Auth::user()->getRoleNames()->first() == 'admin'){
+            return redirect()->route('deshboard');
+        }elseif(Auth::user()->getRoleNames()->first() == 'moderator'){
+            return redirect()->route('deshboard');
+        }elseif(Auth::user()->getRoleNames()->first() == 'editor'){
+            return redirect()->route('deshboard');
+        }elseif(Auth::user()->getRoleNames()->first() == 'writer'){
+            return redirect()->route('deshboard');
+        }else{
+            return redirect()->route('frontend.index');
+        }
         return $user;
+
     }
 }

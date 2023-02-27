@@ -39,7 +39,7 @@
                             <h2>{{ Str::ucfirst(str_replace('-', ' ', $role->name)) }}</h2>
                         </td>
                         <td class="w-40">
-                            <div class="d-flex align-items-center justify-content-center text-theme-9"> <a href="{{ route('permission.assign', $role) }}" class="d-flex align-items-center text-theme-1 deletebutton" href="javascript:;" data-bs-toggle="modal" data-bs-target="#delete-confirmation-modal"> <i data-feather="key" class="w-4 h-4 me-1"></i> Permission </a> </div>
+                            <div class="d-flex align-items-center justify-content-center text-theme-9"> <a href="{{ route('permission.assign', $role) }}" class="d-flex align-items-center text-theme-1 deletebutton"> <i data-feather="key" class="w-4 h-4 me-1"></i> Permission </a> </div>
                         </td>
                         <td class="w-40">
                             {{-- This section access to need role status permission --}}

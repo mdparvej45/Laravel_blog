@@ -20,6 +20,7 @@ class PermissionController extends Controller
     {   $selectRole = Role::with('permissions')->where('id', $id)->first();
     
         $hasPermissions = $selectRole->permissions->pluck('id');
+        // dd(in_array(1,array( $hasPermissions)));
         $permissions = Permission::latest()->get();
         return view('backend.roleandpermession.assignPermission', compact('selectRole', 'permissions', 'hasPermissions'));
     }

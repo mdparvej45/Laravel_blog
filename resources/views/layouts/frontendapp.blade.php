@@ -88,7 +88,12 @@
 									<ul class="dropdown-menu">
 										<li><a class="dropdown-item" href="{{route('deshboard')}}">Deshboard</a></li>
 										<li><a class="dropdown-item" href="blog-single.html">Change Password</a></li>
-										<li><a href="{{ route('logout') }}" class="dropdown-item">Logout</a></li>
+										<li>
+											<form action="{{ route('logout') }}" method="post">
+												@csrf
+												<button style="color: red;" class="dropdown-item" type="submit">Logout</button>
+											</form>
+										</li>
 									</ul>
 								</li>
 
